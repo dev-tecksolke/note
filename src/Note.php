@@ -101,14 +101,14 @@ class Note {
                 ->whereDate('created_at', today())
                 ->where('status', false)
                 ->orderByDesc('created_at')
-                ->paginate(config('mv.paginate'));
+                ->paginate(config('note.paginate'));
 
         return auth()->user()->load('notification')
             ->notification()
             ->whereDate('created_at', today())
             ->where('status', false)
             ->orderByDesc('created_at')
-            ->paginate(config('mv.paginate'));
+            ->paginate(config('note.paginate'));
     }
 
     /**
@@ -123,12 +123,12 @@ class Note {
             return auth('admin')->user()->load('notification')
                 ->notification()
                 ->orderByDesc('created_at')
-                ->paginate(config('mv.paginate'));
+                ->paginate(config('note.paginate'));
 
         return auth()->user()->load('notification')
             ->notification()
             ->orderByDesc('created_at')
-            ->paginate(config('mv.paginate'));
+            ->paginate(config('note.paginate'));
     }
 
     /**
