@@ -12,12 +12,12 @@ class Note {
      * Read a notification here
      * --------------------------
      * @param $notification_id
-     * @param bool $admin
+     * @param string $guard
      * @return
      */
-    public static function readNotification($notification_id, bool $admin = false) {
-        if ($admin) {
-            $fetchMail = auth('admin')->user()->load('notification')
+    public static function readNotification($notification_id, string $guard = null) {
+        if (!empty($guard)) {
+            $fetchMail = auth($guard)->user()->load('notification')
                 ->notification()
                 ->findOrFail($notification_id);
 
@@ -46,12 +46,12 @@ class Note {
      * delete single notification here
      * --------------------------------
      * @param $notification_id
-     * @param bool $admin
+     * @param string $guard
      * @return bool
      */
-    public static function deleteSingleNotification($notification_id, bool $admin = false) {
-        if ($admin) {
-            $fetchMail = auth('admin')->user()->load('notification')
+    public static function deleteSingleNotification($notification_id, string $guard = null) {
+        if (!empty($guard)) {
+            $fetchMail = auth($guard)->user()->load('notification')
                 ->notification()
                 ->findOrFail($notification_id);
         } else {
@@ -70,12 +70,12 @@ class Note {
      * -------------------------------
      * delete all notifications here
      * --------------------------------
-     * @param bool $admin
+     * @param string $guard
      * @return bool
      */
-    public static function deleteAllNotifications(bool $admin = false) {
-        if ($admin) {
-            $mails = auth('admin')->user()->load('notification')
+    public static function deleteAllNotifications(string $guard = null) {
+        if (!empty($guard)) {
+            $mails = auth($guard)->user()->load('notification')
                 ->notification();
         } else {
             $mails = auth()->user()->load('notification')
@@ -91,12 +91,12 @@ class Note {
      * --------------------------
      * fete latest notifications
      * --------------------------
-     * @param bool $admin
+     * @param string|null $guard
      * @return
      */
-    public static function latestNotifications(bool $admin = false) {
-        if ($admin)
-            return auth('admin')->user()->load('notification')
+    public static function latestNotifications(string $guard = null) {
+        if (!empty($guard))
+            return auth($guard)->user()->load('notification')
                 ->notification()
                 ->whereDate('created_at', today())
                 ->where('status', false)
@@ -115,12 +115,12 @@ class Note {
      * --------------------------------
      * Fetch all notifications here
      * --------------------------------
-     * @param bool $admin
+     * @param string|null $guard
      * @return
      */
-    public static function allNotifications(bool $admin = false) {
-        if ($admin)
-            return auth('admin')->user()->load('notification')
+    public static function allNotifications(string $guard = null) {
+        if (!empty($guard))
+            return auth($guard)->user()->load('notification')
                 ->notification()
                 ->orderByDesc('created_at')
                 ->paginate(config('note.paginate'));

@@ -78,7 +78,7 @@ Follow the steps below on how to use the package:
      */
     public function latestNotifications() {
         Note::latestNotifications();//Fetching latest notification for user
-        Note::latestNotifications(true);//Fetching latest notification for admin
+        Note::latestNotifications(PassTheGuardName);//Fetching latest notification for admin
     }
 
     /**
@@ -90,7 +90,7 @@ Follow the steps below on how to use the package:
      */
     public function allNotifications() {
         Note::allNotifications();//Fetching all notifications for user
-        Note::allNotifications(true);//Fetching all notifications for admin
+        Note::allNotifications(PassTheGuardName);//Fetching all notifications for admin
     }
 
     /**
@@ -109,7 +109,7 @@ Follow the steps below on how to use the package:
      */
     public function deleteSingleNotification(string $notification_id) {
         Note::deleteSingleNotification($notification_id);//For user
-        Note::deleteSingleNotification($notification_id, true);//For admin
+        Note::deleteSingleNotification($notification_id, PassTheGuardName);//For admin
     }
 
     /**
@@ -124,7 +124,7 @@ Follow the steps below on how to use the package:
      */
     public function deleteAllNotifications() {
         Note::deleteAllNotifications();//For user
-        Note::deleteAllNotifications(true);//For admin
+        Note::deleteAllNotifications(PassTheGuardName);//For admin
     }
 
     /**
