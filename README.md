@@ -14,7 +14,7 @@
   <br><br>
 </p>
 
-This package is custom notify for both admins and users, so instead of using laravel notification. I built this custom notification package for my projects, so if you want to try it out read through the documentation. 
+This package is custom notify for any model, so instead of using laravel notification. I built this custom notification package for my projects, so if you want to try it out read through the documentation.
 
 ## Installing
 
@@ -63,86 +63,58 @@ Follow the steps below on how to use the package:
      * @return void
      */
     public function __construct() {
-        //The instance should be either this
-        $this->middleware('auth:admin');//for your admin controller
-        //or
-        $this->middleware('auth');//for your user Controller
+        //The instance should be your guard either admin,auth on so on.
     }
 
     /**
      * ---------------------------------
      * Fetch Latest Notification Here
-     * --------------------------------
-     * Passing bool - true - to the function will query admin notification only
-     * @return void
+     * ---------------------------------
      */
     public function latestNotifications() {
-        Note::latestNotifications();//Fetching latest notification for user
-        Note::latestNotifications(PassTheGuardName);//Fetching latest notification for admin
+        Note::latestNotifications(PassTheGuardName);//Pass the guard name.
     }
 
     /**
      * --------------------------------
      * Fetching all notifications
-     * -------------------------------
-     * Passing bool - true - to the function will query admin notification only
-     * @return void
+     * --------------------------------
      */
     public function allNotifications() {
-        Note::allNotifications();//Fetching all notifications for user
-        Note::allNotifications(PassTheGuardName);//Fetching all notifications for admin
+        Note::allNotifications(PassTheGuardName);//Also Pass the guard name.
     }
 
     /**
      * =-------------------------------
      * Deleting a single notification
-     * --------------------------------
-     * Passing bool - true - to the function will query admin notification only
      * ------------------------------------------------------------------------------
      * To achieve single notification create a route that receives a (string) notification_id
      * Note that this package uses uuids so the notification_id has to be a string
      * ----------------------------------------------------------------------------------------
-     * Passing bool - true - to the function will query admin notification only
-     * -----------------------------------------------------------------------------------------------
-     * @param string $notification_id
-     * @return void
      */
     public function deleteSingleNotification(string $notification_id) {
-        Note::deleteSingleNotification($notification_id);//For user
-        Note::deleteSingleNotification($notification_id, PassTheGuardName);//For admin
+        Note::deleteSingleNotification($notification_id, PassTheGuardName);//Pass id and guardName.
     }
 
     /**
      * =-------------------------------
      * Deleting a all notification
      * --------------------------------
-     * Passing bool - true - to the function will query admin notification only
-     * ------------------------------------------------------------------------------
-     * Passing bool - true - to the function will query admin notification only
-     * ----------------------------------------------------------------------------------
-     * @return void
      */
     public function deleteAllNotifications() {
-        Note::deleteAllNotifications();//For user
-        Note::deleteAllNotifications(PassTheGuardName);//For admin
+        Note::deleteAllNotifications(PassTheGuardName);//For this only guard name is needed
     }
 
     /**
      * --------------------------------
      * Creating new notification here
      * --------------------------------
-     * In creating notification we need 3 parameters of which 1 is optional that is for bool admin
+     * In creating notification we need 4 parameters are required
      * -------------------------------------------------------------------------------------------------------
-     * Also you can have your function that receives the parameters and passes them to Note::createSystemNotification
-     * --------------------------------------------------------------------------------------------------------------
-     * @return void
      */
     public function createSystemNotification() {
         //This is for creating user notifications
-        Note::createSystemNotification('My Notification Subject', 'My Notification Message');
-
-        //This is for creating admin notifications
-        Note::createSystemNotification('My Notification Subject', 'My Notification Message',true);
+        Note::createSystemNotification('This will be the id like i.e user id','This will be the model class i.e App\User','My Notification Subject', 'My Notification Message');
     }
 
 
@@ -167,6 +139,6 @@ Follow the steps below on how to use the package:
 
 ## Security Vulnerabilities
  For any security vulnerabilities, please email to [TecksolKE](mailto:client@tecksol.co.ke).
- 
+
 ## License
  This package is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
