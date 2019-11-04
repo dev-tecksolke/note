@@ -104,6 +104,25 @@ Follow the steps below on how to use the package:
     public function deleteAllNotifications() {
         Note::deleteAllNotifications(PassTheGuardName);//For this only guard name is needed
     }
+    
+   /**
+     * --------------------------------------
+     * Fetch the trashed notifications here
+     * --------------------------------------
+    */
+    public function trashedNotifications(){
+         Note::trashedNotifications(PassTheGuardName);
+    }
+    
+    
+   /**
+     * ------------------------------------------
+     * Clear all the trashed notifications here
+     * -----------------------------------------
+    */
+    public function clearTrashedNotifications(){
+         Note::clearTrashedNotifications(PassTheGuardName);
+    }
 
     /**
      * --------------------------------
