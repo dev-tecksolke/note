@@ -72,15 +72,23 @@ class Note
      * here
      * -------------------------------
      * @param string $guard
+     * @param bool $withPagination
      * @return
      */
-    public static function trashedNotifications(string $guard)
+    public static function trashedNotifications(string $guard, bool $withPagination = true)
     {
+        if ($withPagination)
+            return auth($guard)->user()->load('notification')
+                ->notification()
+                ->onlyTrashed()
+                ->orderByDesc('updated_at')
+                ->paginate(config('note.paginate'));
+
         return auth($guard)->user()->load('notification')
             ->notification()
             ->onlyTrashed()
             ->orderByDesc('updated_at')
-            ->paginate(config('note.paginate'));
+            ->get();
     }
 
 
@@ -106,16 +114,26 @@ class Note
      * fete latest notifications
      * --------------------------
      * @param string|null $guard
+     * @param bool $withPagination
      * @return
      */
-    public static function latestNotifications(string $guard)
+    public static function latestNotifications(string $guard, bool $withPagination = true)
     {
+        if ($withPagination)
+            return auth($guard)->user()->load('notification')
+                ->notification()
+                ->whereDate('created_at', today())
+                ->where('status', false)
+                ->orderByDesc('created_at')
+                ->paginate(config('note.paginate'));
+
         return auth($guard)->user()->load('notification')
             ->notification()
             ->whereDate('created_at', today())
             ->where('status', false)
             ->orderByDesc('created_at')
-            ->paginate(config('note.paginate'));
+            ->get();
+
     }
 
     /**
@@ -123,14 +141,21 @@ class Note
      * Fetch all notifications here
      * --------------------------------
      * @param string|null $guard
+     * @param bool $withPagination
      * @return
      */
-    public static function allNotifications(string $guard)
+    public static function allNotifications(string $guard, bool $withPagination = true)
     {
+        if ($withPagination)
+            return auth($guard)->user()->load('notification')
+                ->notification()
+                ->orderByDesc('created_at')
+                ->paginate(config('note.paginate'));
+
         return auth($guard)->user()->load('notification')
             ->notification()
             ->orderByDesc('created_at')
-            ->paginate(config('note.paginate'));
+            ->get();
     }
 
     /**
