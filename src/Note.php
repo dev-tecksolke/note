@@ -78,7 +78,7 @@ class Note
     {
         return auth($guard)->user()->load('notification')
             ->notification()
-            ->withTrashed()
+            ->onlyTrashed()
             ->orderByDesc('updated_at')
             ->paginate(config('note.paginate'));
     }
@@ -94,7 +94,7 @@ class Note
     public static function clearTrashedNotifications(string $guard)
     {
         $mails = auth($guard)->user()->load('notification')
-            ->notification();
+            ->notification()->onlyTrashed();
 
         if ($mails->forceDelete())
             return true;
