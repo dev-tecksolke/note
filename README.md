@@ -68,6 +68,24 @@ Follow the steps below on how to use the package:
 
     /**
      * ---------------------------------
+     * Read a notification.
+     * ---------------------------------
+     */
+    public function readNotification() {
+        Note::readNotification(PassNotificationID,PassTheGuardName);//Pass the guard name and id.
+    }
+
+    /**
+     * ---------------------------------
+     * Read a trashed notification.
+     * ---------------------------------
+     */
+    public function readTrashedNotification() {
+        Note::readTrashedNotification(PassNotificationID,PassTheGuardName);//Pass the guard name and id.
+    }
+
+    /**
+     * ---------------------------------
      * Fetch Latest Notification Here
      * ---------------------------------
      */
@@ -94,6 +112,18 @@ Follow the steps below on how to use the package:
      */
     public function deleteSingleNotification(string $notification_id) {
         Note::deleteSingleNotification($notification_id, PassTheGuardName);//Pass id and guardName.
+    }
+
+    /**
+     * =-------------------------------
+     * Deleting a trashed notification
+     * ------------------------------------------------------------------------------
+     * To achieve single notification create a route that receives a (string) notification_id
+     * Note that this package uses uuids so the notification_id has to be a string
+     * ----------------------------------------------------------------------------------------
+     */
+    public function deleteTrashedNotification(string $notification_id) {
+        Note::deleteTrashedNotification($notification_id, PassTheGuardName);//Pass id and guardName.
     }
 
     /**
