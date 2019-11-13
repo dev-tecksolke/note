@@ -29,6 +29,29 @@ class Note
     }
 
     /**
+     * --------------------------
+     * Read a trashed notification here
+     * --------------------------
+     * @param string $notification_id
+     * @param string $guard
+     * @return
+     */
+    public static function readTrashedNotification(string $notification_id, string $guard)
+    {
+        $fetchMail = auth($guard)->user()->load('notification')
+            ->notification()
+            ->onlyTrashed()
+            ->findOrFail($notification_id);
+
+        //change status
+        $fetchMail->update([
+            'status' => true,
+        ]);
+
+        return $fetchMail;
+    }
+
+    /**
      * --------------------------------
      * delete single notification here
      * --------------------------------
@@ -44,6 +67,27 @@ class Note
 
         //delete
         if ($fetchMail->delete())
+            return true;
+        return false;
+    }
+
+    /**
+     * --------------------------------
+     * delete trashed notification here
+     * --------------------------------
+     * @param string $notification_id
+     * @param string $guard
+     * @return bool
+     */
+    public static function deleteTrashNotification(string $notification_id, string $guard)
+    {
+        $fetchMail = auth($guard)->user()->load('notification')
+            ->notification()
+            ->onlyTrashed()
+            ->findOrFail($notification_id);
+
+        //delete
+        if ($fetchMail->forceDelete())
             return true;
         return false;
     }
