@@ -163,7 +163,7 @@ Follow the steps below on how to use the package:
      */
     public function createSystemNotification() {
         //This is for creating user notifications
-        Note::createSystemNotification('This will be the id like i.e user id','This will be the model class i.e App\User','My Notification Subject', 'My Notification Message');
+        Note::createSystemNotification('This will be the id like i.e user id','This will be the Model class i.e App\User','My Notification Subject', 'My Notification Message');
     }
 
 
