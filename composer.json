@@ -1,31 +1,31 @@
 {
-  "name": "tecksolke/note",
-  "description": "This is a custom system notification channel.",
-  "type": "library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "dev-tecksolke",
-      "email": "dev.tecksolKe@gmail.com"
+    "name": "tecksolke/note",
+    "description": "This is a custom system notification channel.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dev-tecksolke",
+            "email": "dev.tecksolKe@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "webpatser/laravel-uuid": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Note\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Note\\NoteServiceProvider"
+            ],
+            "aliases": {
+                "Note": "Note\\NoteFacade"
+            }
+        }
     }
-  ],
-  "minimum-stability": "dev",
-  "require": {
-    "webpatser/laravel-uuid": "^3.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Note\\": "src/"
-    }
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-        "Note\\NoteServiceProvider"
-      ],
-      "aliases": {
-        "Note": "Note\\NoteFacade"
-      }
-    }
-  }
 }
