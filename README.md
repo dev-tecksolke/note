@@ -63,6 +63,13 @@ NOTE_NOTIFICATION_PAGINATE=
 Follow the steps below on how to use the package:
 
 ```php
+# On the relating model use
+public function notification(){
+ return #the relationship
+}
+```
+
+```php
   /**
      * Create a new controller instance.
      *
