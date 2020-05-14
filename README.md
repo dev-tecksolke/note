@@ -11,6 +11,12 @@
   <a href="https://github.com/dev-tecksolke/note/stargazers">
   <img src="https://img.shields.io/github/stars/dev-tecksolke/note">
   </a>
+    <a href="https://packagist.org/packages/tecksolke/note">
+    <img src="https://poser.pugx.org/tecksolke/note/v/stable">
+    </a>
+    <a href="https://packagist.org/packages/tecksolke/note">
+    <img src="https://poser.pugx.org/tecksolke/note/downloads">
+    </a>
   <br><br>
 </p>
 
