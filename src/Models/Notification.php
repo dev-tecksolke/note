@@ -3,6 +3,7 @@
 namespace Note;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Notification extends Model
@@ -18,4 +19,14 @@ class Notification extends Model
 
     //set attributes
     protected $guarded = [];
+
+    /**
+     * get the models
+     * relating here
+     * @return MorphTo
+     */
+    public function notification()
+    {
+        return $this->morphTo(Notification::class);
+    }
 }
