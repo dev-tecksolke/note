@@ -195,7 +195,7 @@ public function notification(){
 
 | Version | Status     | Packagist           | Namespace    | Repo                |
 |---------|------------|---------------------|--------------|---------------------|
-| 1.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v1.0.0](https://github.com/dev-tecksolke/note/tree/1.0)|
+| 1.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v1.8.8](https://github.com/dev-tecksolke/note/tree/1.0)|
 
 [tecksolke/note-1-repo]: https://github.com/dev-tecksolke/note.git
 

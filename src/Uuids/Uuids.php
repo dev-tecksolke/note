@@ -1,6 +1,6 @@
 <?php
 
-namespace Note;
+namespace Note\Uuids;
 
 use Webpatser\Uuid\Uuid;
 
