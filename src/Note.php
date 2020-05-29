@@ -4,6 +4,8 @@
 namespace Note;
 
 
+use Note\Models\Notification;
+
 class Note
 {
     /**
