@@ -70,6 +70,7 @@ public function notification(){
 ```
 
 ```php
+   use Note\Note;
   /**
      * Create a new controller instance.
      *
@@ -113,6 +114,15 @@ public function notification(){
      */
     public function allNotifications() {
         Note::allNotifications(PassTheGuardName);//Also Pass the guard name.
+    }
+
+    /**
+     * --------------------------------
+     * Fetching all unread notifications
+     * --------------------------------
+     */
+    public function unreadNotifications() {
+        Note::unreadNotifications(PassTheGuardName);//Also Pass the guard name.
     }
 
     /**
@@ -195,7 +205,7 @@ public function notification(){
 
 | Version | Status     | Packagist           | Namespace    | Repo                |
 |---------|------------|---------------------|--------------|---------------------|
-| 1.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v1.8.8](https://github.com/dev-tecksolke/note/tree/1.0)|
+| 1.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v2.0.0](https://github.com/dev-tecksolke/note/tree/2.0)|
 
 [tecksolke/note-1-repo]: https://github.com/dev-tecksolke/note.git
 

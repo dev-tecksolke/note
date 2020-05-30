@@ -205,6 +205,30 @@ class Note
     }
 
     /**
+     * --------------------------------
+     * Fetch all unread notifications here
+     * --------------------------------
+     * @param string|null $guard
+     * @param bool $withPagination
+     * @return
+     */
+    public static function unreadNotifications(string $guard, bool $withPagination = true)
+    {
+        if ($withPagination)
+            return auth($guard)->user()->load('notification')
+                ->notification()
+                ->where('status', false)
+                ->orderByDesc('created_at')
+                ->paginate(config('note.paginate'));
+
+        return auth($guard)->user()->load('notification')
+            ->notification()
+            ->where('status', false)
+            ->orderByDesc('created_at')
+            ->get();
+    }
+
+    /**
      * -------------------------------
      * create system notifications
      * here
