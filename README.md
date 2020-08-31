@@ -149,7 +149,7 @@ public function notification(){
      * ----------------------------------------------------------------------------------------
      */
     public function deleteTrashedNotification(string $notification_id) {
-        Note::deleteTrashedNotification($notification_id);//Pass notification model id.
+        Note::deleteTrashNotification($notification_id);//Pass notification model id.
     }
 
     /**
