@@ -208,8 +208,8 @@ public function notification(){
 
 | Version | Status     | Packagist           | Namespace    | Repo                |
 |---------|------------|---------------------|--------------|---------------------|
-| 1.x     | EOL     | `tecksolke/note` | `Note/NoteServiceProvider` | [v1.9.9](https://github.com/dev-tecksolke/note/tree/1.0)|
-| 2.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v2.0.1](https://github.com/dev-tecksolke/note/tree/2.0)|
+| 1.x     | EOL     | `tecksolke/note` | `Note/NoteServiceProvider` | [v1.9.9](https://github.com/dev-tecksolke/note/releases/tag/v1.9.9)|
+| 2.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v2.0.1](https://github.com/dev-tecksolke/note/releases/tag/v2.0.1)|
 
 [tecksolke/note-1-repo]: https://github.com/dev-tecksolke/note.git
 
