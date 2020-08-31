@@ -4,21 +4,23 @@
 namespace Note;
 
 
+use LaravelMultipleGuards\Traits\FindGuard;
 use Note\Models\Notification;
 
 class Note
 {
+    use FindGuard;
+
     /**
      * --------------------------
      * Read a notification here
      * --------------------------
      * @param string $notification_id
-     * @param string $guard
      * @return
      */
-    public static function readNotification(string $notification_id, string $guard)
+    public static function readNotification(string $notification_id)
     {
-        $fetchMail = auth($guard)->user()->load('notification')
+        $fetchMail = (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->findOrFail($notification_id);
 
@@ -35,12 +37,11 @@ class Note
      * Read a trashed notification here
      * --------------------------
      * @param string $notification_id
-     * @param string $guard
      * @return
      */
-    public static function readTrashedNotification(string $notification_id, string $guard)
+    public static function readTrashedNotification(string $notification_id)
     {
-        $fetchMail = auth($guard)->user()->load('notification')
+        $fetchMail = (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->onlyTrashed()
             ->findOrFail($notification_id);
@@ -58,12 +59,11 @@ class Note
      * delete single notification here
      * --------------------------------
      * @param string $notification_id
-     * @param string $guard
      * @return bool
      */
-    public static function deleteSingleNotification(string $notification_id, string $guard)
+    public static function deleteSingleNotification(string $notification_id)
     {
-        $fetchMail = auth($guard)->user()->load('notification')
+        $fetchMail = (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->findOrFail($notification_id);
 
@@ -78,12 +78,11 @@ class Note
      * delete trashed notification here
      * --------------------------------
      * @param string $notification_id
-     * @param string $guard
      * @return bool
      */
-    public static function deleteTrashNotification(string $notification_id, string $guard)
+    public static function deleteTrashNotification(string $notification_id)
     {
-        $fetchMail = auth($guard)->user()->load('notification')
+        $fetchMail = (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->onlyTrashed()
             ->findOrFail($notification_id);
@@ -98,12 +97,11 @@ class Note
      * -------------------------------
      * delete all notifications here
      * --------------------------------
-     * @param string $guard
      * @return bool
      */
-    public static function deleteAllNotifications(string $guard)
+    public static function deleteAllNotifications()
     {
-        $mails = auth($guard)->user()->load('notification')
+        $mails = (new Note())->findGuardType()->user()->load('notification')
             ->notification();
 
         if ($mails->delete())
@@ -117,20 +115,19 @@ class Note
      * Fetch the soft deleted data
      * here
      * -------------------------------
-     * @param string $guard
      * @param bool $withPagination
      * @return
      */
-    public static function trashedNotifications(string $guard, bool $withPagination = true)
+    public static function trashedNotifications(bool $withPagination = true)
     {
         if ($withPagination)
-            return auth($guard)->user()->load('notification')
+            return (new Note())->findGuardType()->user()->load('notification')
                 ->notification()
                 ->onlyTrashed()
                 ->orderByDesc('updated_at')
                 ->paginate(config('note.paginate'));
 
-        return auth($guard)->user()->load('notification')
+        return (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->onlyTrashed()
             ->orderByDesc('updated_at')
@@ -142,12 +139,11 @@ class Note
      * ------------------------------
      * delete a all trashed messages
      * ------------------------------
-     * @param string $guard
      * @return bool
      */
-    public static function clearTrashedNotifications(string $guard)
+    public static function clearTrashedNotifications()
     {
-        $mails = auth($guard)->user()->load('notification')
+        $mails = (new Note())->findGuardType()->user()->load('notification')
             ->notification()->onlyTrashed();
 
         if ($mails->forceDelete())
@@ -159,21 +155,20 @@ class Note
      * --------------------------
      * fete latest notifications
      * --------------------------
-     * @param string|null $guard
      * @param bool $withPagination
      * @return
      */
-    public static function latestNotifications(string $guard, bool $withPagination = true)
+    public static function latestNotifications(bool $withPagination = true)
     {
         if ($withPagination)
-            return auth($guard)->user()->load('notification')
+            return (new Note())->findGuardType()->user()->load('notification')
                 ->notification()
                 ->whereDate('created_at', today())
                 ->where('status', false)
                 ->orderByDesc('created_at')
                 ->paginate(config('note.paginate'));
 
-        return auth($guard)->user()->load('notification')
+        return (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->whereDate('created_at', today())
             ->where('status', false)
@@ -186,19 +181,18 @@ class Note
      * --------------------------------
      * Fetch all notifications here
      * --------------------------------
-     * @param string|null $guard
      * @param bool $withPagination
      * @return
      */
-    public static function allNotifications(string $guard, bool $withPagination = true)
+    public static function allNotifications(bool $withPagination = true)
     {
         if ($withPagination)
-            return auth($guard)->user()->load('notification')
+            return (new Note())->findGuardType()->user()->load('notification')
                 ->notification()
                 ->orderByDesc('created_at')
                 ->paginate(config('note.paginate'));
 
-        return auth($guard)->user()->load('notification')
+        return (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->orderByDesc('created_at')
             ->get();
@@ -208,20 +202,19 @@ class Note
      * --------------------------------
      * Fetch all unread notifications here
      * --------------------------------
-     * @param string|null $guard
      * @param bool $withPagination
      * @return
      */
-    public static function unreadNotifications(string $guard, bool $withPagination = true)
+    public static function unreadNotifications(bool $withPagination = true)
     {
         if ($withPagination)
-            return auth($guard)->user()->load('notification')
+            return (new Note())->findGuardType()->user()->load('notification')
                 ->notification()
                 ->where('status', false)
                 ->orderByDesc('created_at')
                 ->paginate(config('note.paginate'));
 
-        return auth($guard)->user()->load('notification')
+        return (new Note())->findGuardType()->user()->load('notification')
             ->notification()
             ->where('status', false)
             ->orderByDesc('created_at')
@@ -233,16 +226,15 @@ class Note
      * create system notifications
      * here
      * -------------------------------
-     * @param string $user_id
      * @param string $modelClass
      * @param string $subject
      * @param string $description
      * @return bool
      */
-    public static function createSystemNotification(string $user_id, string $modelClass, string $subject, string $description)
+    public static function createSystemNotification(string $modelClass, string $subject, string $description)
     {
         $notification = Notification::query()->create([
-            'notification_id' => $user_id,
+            'notification_id' => (new Note())->findGuardType()->id(),
             'notification_type' => $modelClass,
             'subject' => $subject,
             'description' => $description,

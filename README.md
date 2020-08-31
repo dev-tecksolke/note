@@ -58,6 +58,9 @@ You will have to provide this in the *.env* for the api configurations:
 ```php
 # This is the pagination number you want to paginate with <-- default(10) -->
 NOTE_NOTIFICATION_PAGINATE=
+
+# set all the guards to use within the system
+SYSTEM_GUARDS=admin,web
 ```
 ## Usage
 Follow the steps below on how to use the package:
@@ -86,7 +89,7 @@ public function notification(){
      * ---------------------------------
      */
     public function readNotification() {
-        Note::readNotification(PassNotificationID,PassTheGuardName);//Pass the guard name and id.
+        Note::readNotification(PassNotificationID);//Pass notification model id.
     }
 
     /**
@@ -95,7 +98,7 @@ public function notification(){
      * ---------------------------------
      */
     public function readTrashedNotification() {
-        Note::readTrashedNotification(PassNotificationID,PassTheGuardName);//Pass the guard name and id.
+        Note::readTrashedNotification(PassNotificationID);//Pass notification model id.
     }
 
     /**
@@ -104,7 +107,7 @@ public function notification(){
      * ---------------------------------
      */
     public function latestNotifications() {
-        Note::latestNotifications(PassTheGuardName);//Pass the guard name.
+        Note::latestNotifications();
     }
 
     /**
@@ -113,7 +116,7 @@ public function notification(){
      * --------------------------------
      */
     public function allNotifications() {
-        Note::allNotifications(PassTheGuardName);//Also Pass the guard name.
+        Note::allNotifications();
     }
 
     /**
@@ -122,7 +125,7 @@ public function notification(){
      * --------------------------------
      */
     public function unreadNotifications() {
-        Note::unreadNotifications(PassTheGuardName);//Also Pass the guard name.
+        Note::unreadNotifications();
     }
 
     /**
@@ -134,7 +137,7 @@ public function notification(){
      * ----------------------------------------------------------------------------------------
      */
     public function deleteSingleNotification(string $notification_id) {
-        Note::deleteSingleNotification($notification_id, PassTheGuardName);//Pass id and guardName.
+        Note::deleteSingleNotification($notification_id);//Pass notification model id.
     }
 
     /**
@@ -146,7 +149,7 @@ public function notification(){
      * ----------------------------------------------------------------------------------------
      */
     public function deleteTrashedNotification(string $notification_id) {
-        Note::deleteTrashedNotification($notification_id, PassTheGuardName);//Pass id and guardName.
+        Note::deleteTrashedNotification($notification_id);//Pass notification model id.
     }
 
     /**
@@ -155,7 +158,7 @@ public function notification(){
      * --------------------------------
      */
     public function deleteAllNotifications() {
-        Note::deleteAllNotifications(PassTheGuardName);//For this only guard name is needed
+        Note::deleteAllNotifications();
     }
     
    /**
@@ -164,7 +167,7 @@ public function notification(){
      * --------------------------------------
     */
     public function trashedNotifications(){
-         Note::trashedNotifications(PassTheGuardName);
+         Note::trashedNotifications();
     }
     
     
@@ -174,7 +177,7 @@ public function notification(){
      * -----------------------------------------
     */
     public function clearTrashedNotifications(){
-         Note::clearTrashedNotifications(PassTheGuardName);
+         Note::clearTrashedNotifications();
     }
 
     /**
@@ -186,7 +189,7 @@ public function notification(){
      */
     public function createSystemNotification() {
         //This is for creating user notifications
-        Note::createSystemNotification('This will be the id like i.e user id','This will be the Model class i.e App\User','My Notification Subject', 'My Notification Message');
+        Note::createSystemNotification('This will be the Model class i.e App\User','My Notification Subject', 'My Notification Message');
     }
 
 
@@ -205,12 +208,13 @@ public function notification(){
 
 | Version | Status     | Packagist           | Namespace    | Repo                |
 |---------|------------|---------------------|--------------|---------------------|
-| 1.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v2.0.0](https://github.com/dev-tecksolke/note/tree/2.0)|
+| 1.x     | EOL     | `tecksolke/note` | `Note/NoteServiceProvider` | [v1.9.9](https://github.com/dev-tecksolke/note/tree/1.0)|
+| 2.x     | Latest     | `tecksolke/note` | `Note/NoteServiceProvider` | [v2.0.1](https://github.com/dev-tecksolke/note/tree/2.0)|
 
 [tecksolke/note-1-repo]: https://github.com/dev-tecksolke/note.git
 
 ## Security Vulnerabilities
- For any security vulnerabilities, please email to [TecksolKE](mailto:client@tecksol.co.ke).
+ For any security vulnerabilities, please email to [TechGuy](mailto:dev.techguy@@gmail.com).
 
 ## License
  This package is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

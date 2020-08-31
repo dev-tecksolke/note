@@ -5,13 +5,19 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "dev-tecksolke",
-            "email": "dev.tecksolKe@gmail.com"
+            "name": "Vincent Ososi",
+            "email": "dev.techguy@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "keywords": [
+        "laravel",
+        "notification-channels",
+        "notification"
+    ],
+    "minimum-stability": "stable",
     "require": {
-        "webpatser/laravel-uuid": "^3.0"
+        "webpatser/laravel-uuid": "^3.0",
+        "dev-techguy/laravel-multiple-guards": "^1.0"
     },
     "autoload": {
         "psr-4": {
