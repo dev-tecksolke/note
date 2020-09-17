@@ -22,6 +22,7 @@ class Note
     {
         $fetchMail = (new Note())->findGuardType()->user()->load('notification')
             ->notification()
+            ->withTrashed()
             ->findOrFail($notification_id);
 
         //change status
